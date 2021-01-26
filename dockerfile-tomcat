@@ -1,0 +1,21 @@
+FROM centos
+MAINTAINER heshaohua 779326052@qq.com
+
+ADD jdk-8u201-linux-x64.tar.gz /docker-study/local/
+
+ADD apache-tomcat-9.0.41.tar.gz /docker-study/local/
+
+ENV MYPATH /usr/local
+WORKDIR  $MYPATH
+
+ENV JAVA_HOME /docker-study/local/jdk1.8.0_201
+ENV CLASSPATH .:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CATALINA_HOME /docker-study/local/apache-tomcat-9.0.41
+ENV CATALINA_BASH /docker-study/local/apache-tomcat-9.0.41
+ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+EXPOSE 8080
+
+CMD touch ---------------------jiaru------------------
+
+CMD /docker-study/local/apache-tomcat-9.0.41/bin/startup.sh && tail -F /docker-study/local/apache-tomcat-9.0.41/logs/catalina.out
+
